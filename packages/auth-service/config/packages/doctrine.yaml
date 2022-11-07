@@ -1,0 +1,50 @@
+doctrine:
+    dbal:
+        default_connection: ro
+        connections: 
+            ro:
+                driver: '%env(RO_DB_DRIVER)%'
+                host: '%env(RO_DB_HOST)%'
+                port: '%env(RO_DB_PORT)%'
+                dbname: '%env(RO_DB_NAME)%'
+                user: '%env(RO_DB_USER)%'
+                password: '%env(RO_DB_PASSWORD)%'
+                server_version: '%env(RO_DB_SERVER_VERSION)%'
+                charset: UTF8
+            data:
+                driver: '%env(DATA_DB_DRIVER)%'
+                host: '%env(DATA_DB_HOST)%'
+                port: '%env(DATA_DB_PORT)%'
+                dbname: '%env(DATA_DB_NAME)%'
+                user: '%env(DATA_DB_USER)%'
+                password: '%env(DATA_DB_PASSWORD)%'
+                server_version: '%env(DATA_DB_SERVER_VERSION)%'
+                charset: "UTF8"
+    orm:
+        default_entity_manager: ro
+        entity_managers:
+            ro:
+                connection: ro
+                dql:
+                    string_functions:
+                        MATCH_AGAINST: App\Extensions\Doctrine\MatchAgainst
+                mappings:
+                    Main:
+                        is_bundle: false
+                        type: annotation
+                        dir: '%kernel.project_dir%/src/Entity/Ro'
+                        prefix: 'App\Entity\Ro'
+                        alias: Main
+            data:
+                connection: data
+                dql:
+                    string_functions:
+                        MATCH_AGAINST: App\Extensions\Doctrine\MatchAgainst
+                mappings:
+                    Main:
+                        is_bundle: false
+                        type: annotation
+                        dir: '%kernel.project_dir%/src/Entity/Data'
+                        prefix: 'App\Entity\Data'
+                        alias: Data
+        auto_generate_proxy_classes: true
