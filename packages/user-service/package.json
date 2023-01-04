@@ -1,0 +1,10 @@
+{
+    "name": "@rosance/user-service",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+      "start": "symfony serve --port=8000",
+      "stop": "symfony server:stop"
+    }
+  }
+  
